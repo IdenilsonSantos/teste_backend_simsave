@@ -15,7 +15,9 @@ class CompanyController extends Controller
 
     public function getCompany(Request $request)
     {
-    	return Company::findOrFail($request->id);
+        $company = Company::where('id', $request->id);
+        $companyEmployee = $company->with('employees')->get();
+        return $companyEmployee;
     }
 
     public function createCompany(Request $request)

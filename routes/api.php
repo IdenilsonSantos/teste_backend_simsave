@@ -23,6 +23,16 @@ Route::group(['prefix' => 'company/'], function ($router) {
 
 });
 
+Route::group(['prefix' => 'employee/'], function ($router) {
+
+	$router->get('/','EmployeeController@listEmployees');
+	$router->post('/','EmployeeController@createEmployee');
+	$router->get('/{id}','EmployeeController@getEmployee');
+	$router->post('/{id}','EmployeeController@editEmployee');
+	$router->delete('/{id}','EmployeeController@deleteEmployee');
+	
+});
+
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
